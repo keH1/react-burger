@@ -1,0 +1,29 @@
+.container {
+    padding: 20px;
+}
+
+.ingredients {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.ingredient {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.total_sum {
+    display: flex;
+    align-items: center;
+}
+
+.total {
+    composes: total_sum;
+    justify-content: right;
+    gap: 30px;
+    margin-top: 20px;
+}
