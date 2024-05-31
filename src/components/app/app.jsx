@@ -18,7 +18,12 @@ const App = () => {
 
     useEffect(() => {
         fetch(API_URL)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return res.json();
+            })
             .then(data => {
                 setData(data.data);
                 setIsLoading(false);
