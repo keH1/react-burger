@@ -22,7 +22,7 @@ const BurgerConstructor = ({ ingredients, onOrderClick }) => {
             <div className={styles.total}>
                 <p className="text text_type_digits-medium">610</p>
                 <CurrencyIcon type="primary" />
-                <Button type="primary" size="medium" onClick={onOrderClick}>
+                <Button type="primary" size="medium" htmlType="button" onClick={onOrderClick}>
                     Оформить заказ
                 </Button>
             </div>
