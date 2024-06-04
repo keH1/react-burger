@@ -1,0 +1,11 @@
+.app {
+  text-align: center;
+  background-color: #0D0D0D;
+  min-height: 100vh;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 40px 80px;
+}

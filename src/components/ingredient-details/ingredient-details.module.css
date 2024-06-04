@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #1c1c21;
+    border-radius: 10px;
+    width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.image {
+    width: 240px;
+    height: 240px;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.description {
+    font-size: 14px;
+    color: #8585ad;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.details {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #8585ad;
+}
+
+.detail p:first-child {
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.detail p:last-child {
+    font-size: 16px;
+    font-weight: bold;
+}
