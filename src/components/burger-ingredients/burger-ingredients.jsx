@@ -1,40 +1,28 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ingredientType } from '../../utils/types';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchIngredients } from '../../services/ingredients/ingredientsSlice';
+import Ingredient from '../ingredient/ingredient';
 import styles from './burger-ingredients.module.css';
 
-const BurgerIngredients = ({ ingredients, onIngredientClick }) => {
-    const [current, setCurrent] = useState('one');
+const BurgerIngredients = () => {
+    const dispatch = useDispatch();
+    const { items, status, error } = useSelector(state => state.ingredients);
+
+    useEffect(() => {
+        if (status === 'idle') {
+            dispatch(fetchIngredients());
+        }
+    }, [status, dispatch]);
 
     return (
-        <section className={styles.container}>
-            <div className={styles.tabs}>
-                <Tab value="one" active={current === 'one'} onClick={() => setCurrent('one')}>
-                    Булки
-                </Tab>
-                <Tab value="two" active={current === 'two'} onClick={() => setCurrent('two')}>
-                    Соусы
-                </Tab>
-                <Tab value="three" active={current === 'three'} onClick={() => setCurrent('three')}>
-                    Начинки
-                </Tab>
-            </div>
-            <div className={styles.ingredients}>
-                {ingredients.map(ingredient => (
-                    <div key={ingredient._id} className={styles.ingredient} onClick={() => onIngredientClick(ingredient)}>
-                        <img src={ingredient.image} alt={ingredient.name} />
-                        <p>{ingredient.name}</p>
-                    </div>
-                ))}
-            </div>
-        </section>
+        <div className={styles.container}>
+            {status === 'loading' && <p>Загрузка...</p>}
+            {status === 'failed' && <p>Произошла ошибка: {error}</p>}
+            {status === 'succeeded' && items.map(item => (
+                <Ingredient key={item._id} item={item} />
+            ))}
+        </div>
     );
-};
-
-BurgerIngredients.propTypes = {
-    ingredients: PropTypes.arrayOf(ingredientType).isRequired,
-    onIngredientClick: PropTypes.func.isRequired,
 };
 
 export default BurgerIngredients;
